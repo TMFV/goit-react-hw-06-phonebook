@@ -1,38 +1,28 @@
-import style from './ContactForm.module.css';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import style from "./ContactForm.module.css";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class ContactForm extends Component {
   state = {
-    name: '',
-    number: '',
+    name: "",
+    number: "",
   };
-  handleChange = event => {
-    /*     console.log(event.currentTarget);
-    console.log(event.currentTarget.name);
-    console.log(event.currentTarget.value); */
+  handleChange = (event) => {
     const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
-    //this.setState({ [event.currentTarget.name]: event.currentTarget.value });
   };
-  /*   inputNameEvent = event => {
-    this.setState({ curName: event.currentTarget.value });
-  };
-  inputTelEvent = event => {
-    this.setState({ curTel: event.currentTarget.value });
-  }; */
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     let contactForAdd = { name: this.state.name, number: this.state.number };
-    //console.log(this.state);
+
     this.props.onSubmitData(contactForAdd);
 
     this.reset();
   };
 
   reset = () => {
-    this.setState({ name: '', number: '' });
+    this.setState({ name: "", number: "" });
   };
   render() {
     return (
