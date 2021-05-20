@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { uuid } from "uuidv4";
 
 class ContactList extends Component {
-  deleteId = Id => {
+  deleteId = (Id) => {
     this.props.del(Id);
   };
   createList = () => {
-    return this.props.contacts.map(contact => {
+    return this.props.contacts.map((contact) => {
       return (
-        <li key={uuidv4()} id={contact.id}>
+        <li key={uuid()} id={contact.id}>
           {`${contact.name}: ${contact.number}`}
           <button
             data-id={contact.id}
