@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-03-phonebook",
+  "name": "goit-react-hw-06-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tmfv.github.io/goit-react-hw-03-phonebook/",
+  "homepage": "https://tmfv.github.io/goit-react-hw-06-phonebook/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^5.11.10",
@@ -15,6 +15,7 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "uuid": "^8.3.2",
     "uuidv4": "^6.2.8",
     "web-vitals": "^1.1.1"

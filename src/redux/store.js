@@ -1,6 +1,21 @@
 //import { combineReducers } from "redux";
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  getDefaultMiddleware,
+  combineReducers,
+} from "@reduxjs/toolkit";
 import logger from "redux-logger";
+import storage from "redux-persist/lib/storage";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import appReducer from "./app/app-reducer";
 
 console.log(getDefaultMiddleware());
@@ -9,13 +24,32 @@ console.log(getDefaultMiddleware());
 }); */
 //console.log(process.env);
 //const store = createStore(rootReducer, composeWithDevTools());
-const middleware = [...getDefaultMiddleware(), logger];
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+  logger,
+];
+
+/* const rootReducer = combineReducers({
+  app: appReducer,
+});
+ */
+const persistConfig = {
+  key: "app",
+  storage,
+  blacklist: ["filter"],
+};
+
+//const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const store = configureStore({
-  reducer: {
-    app: appReducer,
-  },
+  reducer: { app: persistReducer(persistConfig, appReducer) },
   middleware,
   devTools: process.env.NODE_ENV === "development",
 });
 
-export default store;
+const persistor = persistStore(store);
+export default { store, persistor };
